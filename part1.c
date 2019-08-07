@@ -3,20 +3,12 @@
 #include <unistd.h>
 #include <stdlib.h>
 
-#include <stdio.h>
-
 // Utilities I wrote to help with this task
 // Basically wrappers over syscalls
 #include "utils.h"
 
 // Some wrappers for file related syscalls
 #include "file.h"
-
-int _main() {
-    print("#i", len_str("\033[7m"));
-    //  print("#s\n", a);
-    return 0;
-}
 
 int main(int argc, char ** argv) {
     // Check if the user provided path or not
