@@ -1,6 +1,4 @@
-#include <sys/stat.h>
 #include <fcntl.h>
-#include <unistd.h>
 #include <stdlib.h>
 
 // Utilities I wrote to help with this task
@@ -29,39 +27,30 @@ int main(int argc, char ** argv) {
     char * filename = get_filename(argv[1]),
           *dir_name = argv[2];
 
-    // Does the directory already exist?
-    if(!exists(dir_name)) {
-        // no? ok trying to create it
-        if(mkdir(dir_name, 0700) == -1) {
-            // oops
-            print("There was some error in creating directory #s", dir_name);
-
-            return 3;
-        }
-    }
-
     // these intermediate variables are used to
     // prevent any memory leaks. Each of them are free'd
     // at the end
     char * dest_with_slash = append(dir_name, "/"),
          *dest = append(dest_with_slash, filename);
 
-    // create the dest file
-    int rev_fd = open(dest, O_CREAT | O_TRUNC | O_WRONLY, 0600);
+    // Does the directory exist?
+    print("Directory is created? #s\n\n", exists(dir_name) ? "yes" : "no");
 
-    off_t bs = get_size(argv[1]) / 100;
-    if(!bs) bs = 1;
-    if(bs > 1e6) bs = 1e6;
+    // Are contents reversed?
 
-    // reverse copy contents of in_fd to rev_fd
-    rev_copy(in_fd, rev_fd, bs, 1);
+    // permissions
+    print("Permissions\n");
 
-    close(in_fd);
-    close(rev_fd);
+    perm file_perm = get_perm(dest),
+         dir_perm = get_perm(argv[2]);
+
+    print("File:\n");
+    print_perm(file_perm);
+
+    print("Dir:\n");
+    print_perm(dir_perm);
 
     free(dest_with_slash);
     free(filename);
     free(dest);
-
-    return 0;
 }

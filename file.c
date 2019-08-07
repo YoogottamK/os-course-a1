@@ -45,6 +45,23 @@ perm get_perm(const char * path) {
     return perms;
 }
 
+void print_perm(perm p) {
+    print("\tUser:\t");
+    print("\tr: #c\t", '0' + !!(p.u & 4));
+    print("\tw: #c\t", '0' + !!(p.u & 2));
+    print("\tx: #c\n", '0' + !!(p.u & 1));
+
+    print("\tGroup:\t");
+    print("\tr: #c\t", '0' + !!(p.g & 4));
+    print("\tw: #c\t", '0' + !!(p.g & 2));
+    print("\tx: #c\n", '0' + !!(p.g & 1));
+
+    print("\tOther:\t");
+    print("\tr: #c\t", '0' + !!(p.o & 4));
+    print("\tw: #c\t", '0' + !!(p.o & 2));
+    print("\tx: #c\n", '0' + !!(p.o & 1));
+}
+
 char * get_filename(const char * path) {
     int l = len_str(path), i = l - 1, j;
     char * name = (char *) malloc(l + 1);

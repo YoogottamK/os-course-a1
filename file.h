@@ -30,6 +30,8 @@ off_t get_size(const char * path);
  */
 perm get_perm(const char * path);
 
+void print_perm(perm p);
+
 /*
  * get_filename: returns the name of file
  *  [useful when path was specified instead of the name of the file]
