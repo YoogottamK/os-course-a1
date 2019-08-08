@@ -84,6 +84,14 @@ void reverse(char * str) {
     }
 }
 
+bool str_eq(const char * a, const char * b) {
+    for(int i = 0; a[i] && b[i]; i++)
+        if(a[i] != b[i])
+            return false;
+
+    return true;
+}
+
 void print(char * fmt, ...) {
     char * to_print = (char *) malloc(len_str(fmt) + 1), *ch = fmt;
     int l = 0;

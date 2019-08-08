@@ -114,6 +114,59 @@ void rev_copy(int fd_a, int fd_b, int bs, bool progres) {
             sz = lseek(fd_a, -2 * bs, SEEK_CUR);
     }
 
-    print("\nDone\n");
+    if(progres)
+        print("\nDone\n");
+
     free(block);
+}
+
+bool diff_file(int fd_a, int fd_b) {
+    struct stat st_a, st_b;
+    fstat(fd_a, &st_a);
+    fstat(fd_b, &st_b);
+
+    if(st_a.st_size != st_b.st_size)
+        return true;
+
+
+    off_t bs = 1e6, size = st_a.st_size, left = size;
+    char *file_a = (char*) malloc(bs + 1),
+         *file_b = (char*) malloc(bs + 1);
+
+    while(left) {
+        if(bs > left)
+            bs = left;
+
+        read(fd_a, file_a, bs);
+        read(fd_b, file_b, bs);
+
+        file_a[bs] = 0;
+        file_b[bs] = 0;
+
+        left -= bs;
+
+        if(!str_eq(file_a, file_b))
+            return true;
+    }
+
+    return false;
+}
+
+char * uniq_file() {
+    int num = 0, len_name = 10;
+    char * name = (char*) malloc(len_name + 1);
+    name[len_name] = 0;
+
+    str_set(name, 0, len_name, "tmp_______");
+
+    while(exists(name)) {
+        num++;
+        char * num_str = num2str(num);
+        int len = len_str(num_str);
+
+        str_set(name, len_name - len, len_name, num_str);
+        free(num_str);
+    }
+
+    return name;
 }

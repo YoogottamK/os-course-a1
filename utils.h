@@ -1,3 +1,5 @@
+#include <stdbool.h>
+
 #ifndef __UTILS_H
 #define __UTILS_H
 
@@ -54,6 +56,11 @@ char * num2str(long long n);
  * end is not included
  */
 void str_set(char * str, int begin, int end, const char * rep);
+
+/*
+ * str_eq: check if two strings are equal or not
+ */
+bool str_eq(const char * a, const char * b);
 
 /*
  * append: append string b to a

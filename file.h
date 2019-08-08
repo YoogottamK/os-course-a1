@@ -30,6 +30,9 @@ off_t get_size(const char * path);
  */
 perm get_perm(const char * path);
 
+/*
+ * print_perm: pretty prints permissions
+ */
 void print_perm(perm p);
 
 /*
@@ -45,5 +48,17 @@ char * get_filename(const char * path);
  *  progress: whether to show the progress bar or not
  */
 void rev_copy(int fd_a, int fd_b, int bs, bool progress);
+
+/*
+ * diff_file: returns if the files a and b have different content
+ * or not
+ */
+bool diff_file(int fd_a, int fd_b);
+
+/*
+ * uniq_file: returns a string which can be used as a filename
+ * makes sure it is uniqe
+ */
+char * uniq_file();
 
 #endif

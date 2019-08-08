@@ -1,5 +1,6 @@
 #include <fcntl.h>
 #include <stdlib.h>
+#include <unistd.h>
 
 // Utilities I wrote to help with this task
 // Basically wrappers over syscalls
@@ -34,12 +35,21 @@ int main(int argc, char ** argv) {
          *dest = append(dest_with_slash, filename);
 
     // Does the directory exist?
-    print("Directory is created? #s\n\n", exists(dir_name) ? "yes" : "no");
+    print("Directory is created? #s\n", exists(dir_name) ? "yes" : "no");
 
     // Are contents reversed?
+    char * tmpfile = uniq_file();
+    int chk_fd = open(tmpfile, O_CREAT | O_TRUNC | O_RDWR),
+        rev_fd = open(dest, O_RDONLY);
+
+    // reverse the reversed contents again to check
+    // if it is same as the original file
+    rev_copy(rev_fd, chk_fd, 1e6, 0);
+
+    print("Contents reversed? #s\n", diff_file(in_fd, chk_fd) ? "no" : "yes");
 
     // permissions
-    print("Permissions\n");
+    print("\nPermissions\n");
 
     perm file_perm = get_perm(dest),
          dir_perm = get_perm(argv[2]);
@@ -50,6 +60,9 @@ int main(int argc, char ** argv) {
     print("Dir:\n");
     print_perm(dir_perm);
 
+    unlink(tmpfile);
+
+    free(tmpfile);
     free(dest_with_slash);
     free(filename);
     free(dest);
