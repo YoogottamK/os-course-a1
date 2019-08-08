@@ -149,6 +149,9 @@ bool diff_file(int fd_a, int fd_b) {
             return true;
     }
 
+    free(file_a);
+    free(file_b);
+
     return false;
 }
 
