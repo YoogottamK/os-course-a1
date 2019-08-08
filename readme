@@ -1,0 +1,48 @@
+┌─────────────────────────────────────┐
+│ Assignment 1: Intro to System Calls │
+└─────────────────────────────────────┘
+
+The code is distributed over mutiple files.
+ - file.{c,h}: handles file related tasks
+ - utils.{c,h}: has some other functions which help
+ - part{1,2}.c: the actual code
+
+┌────────────────────┐
+│ Compiling the code │
+└────────────────────┘
+
+To compile the code, you can run
+    `make`
+
+To compile just part1 or part2, you can run
+    `make partx`
+where x = (1|2)
+
+┌────────────────────┐
+│ Executing the code │
+└────────────────────┘
+
+ - To execute part1, run
+    `./part1 <path_to_file> <name_of_dir>`
+
+    This will take the contents of the file and store the reversed content inside
+    dir with the same name. The permissions of file and dir are as specified in
+    the question.
+
+ - To execute part2, run
+    `./part2 <path_to_file> <name_of_dir>`
+
+    This will verify
+     > whether the directory was created
+     > whether contents of dest file are reverse of orig
+     > permissions on the file and dir
+
+┌─────────┐
+│ Cleanup │
+└─────────┘
+
+After you are done, you can run
+    `make clean`
+
+This will delete all compiled code and will leave you with the code
+
