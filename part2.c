@@ -35,7 +35,9 @@ int main(int argc, char ** argv) {
          *dest = append(dest_with_slash, filename);
 
     // Does the directory exist?
-    print("Directory is created? #s\n", exists(dir_name) ? "yes" : "no");
+    print("Was the directory created? #s\n", exists(dir_name) ? "yes" : "no");
+
+    print("Checking file content...");
 
     // Are contents reversed?
     char * tmpfile = uniq_file();
@@ -46,7 +48,7 @@ int main(int argc, char ** argv) {
     // if it is same as the original file
     rev_copy(rev_fd, chk_fd, 1e6, 0);
 
-    print("Contents reversed? #s\n", diff_file(in_fd, chk_fd) ? "no" : "yes");
+    print("\rWere the contents of the file reversed? #s\n", diff_file(in_fd, chk_fd) ? "no" : "yes");
 
     // permissions
     print("\nPermissions\n");
