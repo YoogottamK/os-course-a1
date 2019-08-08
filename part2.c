@@ -60,7 +60,12 @@ int main(int argc, char ** argv) {
     print("Dir:\n");
     print_perm(dir_perm);
 
+    // Cleanup
     unlink(tmpfile);
+
+    close(in_fd);
+    close(rev_fd);
+    close(chk_fd);
 
     free(tmpfile);
     free(dest_with_slash);
