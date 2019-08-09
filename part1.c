@@ -12,8 +12,8 @@
 
 int main(int argc, char ** argv) {
     // Check if the user provided path or not
-    if(argc != 3) {
-        print("Usage: #s 'path_to_file' 'dest_dir'\n", argv[0]);
+    if(argc != 2) {
+        print("Usage: #s 'path_to_file'\n", argv[0]);
 
         return 1;
     }
@@ -27,7 +27,7 @@ int main(int argc, char ** argv) {
     }
 
     char * filename = get_filename(argv[1]),
-          *dir_name = argv[2];
+          *dir_name = "Assignment";
 
     // Does the directory already exist?
     if(!exists(dir_name)) {

@@ -11,8 +11,8 @@
 
 int main(int argc, char ** argv) {
     // Check if the user provided path or not
-    if(argc != 3) {
-        print("Usage: #s 'path_to_file' 'dest_dir'\n", argv[0]);
+    if(argc != 2) {
+        print("Usage: #s 'path_to_file'\n", argv[0]);
 
         return 1;
     }
@@ -26,7 +26,7 @@ int main(int argc, char ** argv) {
     }
 
     char * filename = get_filename(argv[1]),
-          *dir_name = argv[2];
+          *dir_name = "Assignment";
 
     // these intermediate variables are used to
     // prevent any memory leaks. Each of them are free'd
@@ -37,9 +37,9 @@ int main(int argc, char ** argv) {
     // Does the directory exist?
     print("Was the directory created? #s\n", exists(dir_name) ? "yes" : "no");
 
+    // Are contents reversed?
     print("Checking file content...");
 
-    // Are contents reversed?
     char * tmpfile = uniq_file();
     int chk_fd = open(tmpfile, O_CREAT | O_TRUNC | O_RDWR),
         rev_fd = open(dest, O_RDONLY);
