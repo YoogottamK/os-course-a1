@@ -5,7 +5,6 @@
 #define __FILE_H
 
 typedef struct {
-    bool d;
     char u, g, o;
 } perm;
 
@@ -13,6 +12,13 @@ typedef struct {
  * exists: checks if given file / dir exists
  */
 bool exists(const char * path);
+
+/*
+ * some helper functions to check if file is a file and
+ *  dir is a dir
+ */
+bool is_file(const char * path);
+bool is_dir(const char * path);
 
 /*
  * get_size: returns size of the file at 'path'

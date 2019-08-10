@@ -20,20 +20,35 @@ int main(int argc, char ** argv) {
 
     char * rev_path = argv[1],
         *orig_path = argv[2],
-        *dirname = argv[3];
+        *dir_name = argv[3];
 
     // Try to open the file
     int in_fd = open(orig_path, O_RDONLY);
 
     if(in_fd == -1) {
         print("Some error occured while opening '#s': ", orig_path);
-        perror("");
+        perror("¯\\_(ツ)_/¯.");
 
         return 2;
     }
 
+    if(!is_file(rev_path)) {
+        print("The 'file' #s doesn't look like one\n", rev_path);
+        return 2;
+    }
+
+    if(!is_file(orig_path)) {
+        print("The 'file' #s doesn't look like one\n", rev_path);
+        return 2;
+    }
+
+    if(!is_dir(dir_name)) {
+        print("The 'dir' #s doesn't look like one\n", dir_name);
+        return 3;
+    }
+
     // Does the directory exist?
-    print("Was the directory created? #s\n", exists(dirname) ? "yes" : "no");
+    print("Was the directory created? #s\n", exists(dir_name) ? "yes" : "no");
 
     // Are contents reversed?
     print("Checking file content...");
@@ -43,7 +58,7 @@ int main(int argc, char ** argv) {
 
     if(rev_fd == -1) {
         print("Some error occured while opening '#s': ", rev_path);
-        perror("");
+        perror("¯\\_(ツ)_/¯.");
 
         return 2;
     }
@@ -55,7 +70,7 @@ int main(int argc, char ** argv) {
 
     perm rev_perm = get_perm(rev_path),
          orig_perm = get_perm(orig_path),
-         dir_perm = get_perm(dirname);
+         dir_perm = get_perm(dir_name);
 
     print("Original File:\n");
     print_perm(orig_perm);

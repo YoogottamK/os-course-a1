@@ -57,3 +57,15 @@ After you are done, you can run
 
 This will delete all compiled code and will leave you with the code
 
+┌────────────┐
+│ Exit codes │
+└────────────┘
+An exit code of 1 indicates some error in # of command line args.
+Exit code of 2 means some file(s) might be bad
+Exit code of 3 means that some dir path is bad
+
+┌─────────────┐
+│ Assumptions │
+└─────────────┘
+This program assumes that the files are regular files. Not symlinks or anything else.
+

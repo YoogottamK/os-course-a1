@@ -23,8 +23,13 @@ int main(int argc, char ** argv) {
     int in_fd = open(argv[1], O_RDONLY);
     if(in_fd == -1) {
         print("Some error occured while opening '#s': ", argv[1]);
-        perror("");
+        perror("¯\\_(ツ)_/¯.");
 
+        return 2;
+    }
+
+    if(!is_file(argv[1])) {
+        print("The 'file' #s doesn't look like one\n", argv[1]);
         return 2;
     }
 
@@ -37,10 +42,15 @@ int main(int argc, char ** argv) {
         if(mkdir(dir_name, 0700) == -1) {
             // oops
             print("There was some error in creating directory '#s': ", dir_name);
-            perror("");
+            perror("¯\\_(ツ)_/¯.");
 
             return 3;
         }
+    }
+
+    if(!is_dir(dir_name)) {
+        print("The 'dir' #s doesn't look like one\n", dir_name);
+        return 3;
     }
 
     // these intermediate variables are used to
@@ -54,17 +64,27 @@ int main(int argc, char ** argv) {
 
     if(rev_fd == -1) {
         print("There was some error in creating file: ");
-        perror("");
+        perror("¯\\_(ツ)_/¯.");
 
         return 2;
     }
 
-    off_t bs = get_size(argv[1]) / 100;
+    if(!is_file(dest)) {
+        print("The 'file' #s doesn't look like one\n", dest);
+        return 2;
+    }
+
+    off_t size = get_size(argv[1]),
+          bs = size / 100;
     if(!bs) bs = 1;
     if(bs > 1e7) bs = 1e7;
 
     // reverse copy contents of in_fd to rev_fd
-    rev_copy(in_fd, rev_fd, bs);
+    if(size)
+        rev_copy(in_fd, rev_fd, bs);
+    else {
+        print("#s\nEmpty file ¯\\_(ツ)_/¯ \n", progress_bar(1, 1));
+    }
 
     close(in_fd);
     close(rev_fd);

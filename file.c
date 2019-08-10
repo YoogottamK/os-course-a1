@@ -10,6 +10,24 @@ bool exists(const char * path) {
     return stat(path, &st) != -1;
 }
 
+bool is_file(const char * path) {
+    struct stat st;
+
+    if(stat(path, &st) == -1)
+        return false;
+
+    return S_ISREG(st.st_mode);
+}
+
+bool is_dir(const char * path) {
+    struct stat st;
+
+    if(stat(path, &st) == -1)
+        return false;
+
+    return S_ISDIR(st.st_mode);
+}
+
 off_t get_size(const char * path) {
     struct stat st;
     int ret = stat(path, &st);
@@ -21,7 +39,7 @@ off_t get_size(const char * path) {
 }
 
 perm get_perm(const char * path) {
-    perm perms = { .u = 0, .g = 0, .o = 0, .d = 0 };
+    perm perms = { .u = 0, .g = 0, .o = 0 };
     struct stat st;
 
     if(stat(path, &st) == -1) {
@@ -38,8 +56,6 @@ perm get_perm(const char * path) {
     perms.o = 4 * !!(st.st_mode & S_IROTH) +
               2 * !!(st.st_mode & S_IWOTH) +
               !!(st.st_mode & S_IXOTH);
-
-    perms.d = S_ISDIR(st.st_mode);
 
     return perms;
 }
