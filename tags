@@ -1,0 +1,57 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_OUTPUT_MODE	u-ctags	/u-ctags or e-ctags/
+!_TAG_PROGRAM_AUTHOR	Universal Ctags Team	//
+!_TAG_PROGRAM_NAME	Universal Ctags	/Derived from Exuberant Ctags/
+!_TAG_PROGRAM_URL	https://ctags.io/	/official site/
+!_TAG_PROGRAM_VERSION	0.0.0	/3fdf28bc/
+BASE_FLAGS	.ycm_extra_conf.py	/^BASE_FLAGS = [$/;"	v
+CFLAGS	Makefile	/^CFLAGS = -g -Wall$/;"	m
+FindNearest	.ycm_extra_conf.py	/^def FindNearest(path, target, build_folder):$/;"	f
+FlagsForClangComplete	.ycm_extra_conf.py	/^def FlagsForClangComplete(root):$/;"	f
+FlagsForCompilationDatabase	.ycm_extra_conf.py	/^def FlagsForCompilationDatabase(root, filename):$/;"	f
+FlagsForFile	.ycm_extra_conf.py	/^def FlagsForFile(filename):$/;"	f
+FlagsForInclude	.ycm_extra_conf.py	/^def FlagsForInclude(root):$/;"	f
+GetCompilationInfoForFile	.ycm_extra_conf.py	/^def GetCompilationInfoForFile(database, filename):$/;"	f
+HEADER_DIRECTORIES	.ycm_extra_conf.py	/^HEADER_DIRECTORIES = [$/;"	v
+HEADER_EXTENSIONS	.ycm_extra_conf.py	/^HEADER_EXTENSIONS = [$/;"	v
+IsHeaderFile	.ycm_extra_conf.py	/^def IsHeaderFile(filename):$/;"	f
+MakeRelativePathsInFlagsAbsolute	.ycm_extra_conf.py	/^def MakeRelativePathsInFlagsAbsolute(flags, working_directory):$/;"	f
+SOURCE_DIRECTORIES	.ycm_extra_conf.py	/^SOURCE_DIRECTORIES = [$/;"	v
+SOURCE_EXTENSIONS	.ycm_extra_conf.py	/^SOURCE_EXTENSIONS = [$/;"	v
+__FILE_H	file.h	/^#define __FILE_H$/;"	d
+__UTILS_H	utils.h	/^#define __UTILS_H$/;"	d
+__anonfd762ebb0108	file.h	/^typedef struct {$/;"	s
+all	Makefile	/^all: part1 part2$/;"	t
+append	utils.c	/^char * append(const char * a, const char * b) {$/;"	f	typeref:typename:char *
+check_rev	file.c	/^bool check_rev(int fd_a, int fd_b) {$/;"	f	typeref:typename:bool
+clean	Makefile	/^clean:$/;"	t
+d	file.h	/^    bool d;$/;"	m	struct:__anonfd762ebb0108	typeref:typename:bool
+exists	file.c	/^bool exists(const char * path) {$/;"	f	typeref:typename:bool
+file.o	Makefile	/^file.o: file.h file.c utils.o$/;"	t
+g	file.h	/^    char u, g, o;$/;"	m	struct:__anonfd762ebb0108	typeref:typename:char
+get_filename	file.c	/^char * get_filename(const char * path) {$/;"	f	typeref:typename:char *
+get_perm	file.c	/^perm get_perm(const char * path) {$/;"	f	typeref:typename:perm
+get_size	file.c	/^off_t get_size(const char * path) {$/;"	f	typeref:typename:off_t
+len_num	utils.c	/^unsigned int len_num(long long n) {$/;"	f	typeref:typename:unsigned int
+len_str	utils.c	/^unsigned int len_str(const char * str) {$/;"	f	typeref:typename:unsigned int
+main	part1.c	/^int main(int argc, char ** argv) {$/;"	f	typeref:typename:int
+main	part2.c	/^int main(int argc, char ** argv) {$/;"	f	typeref:typename:int
+num2str	utils.c	/^char * num2str(long long n) {$/;"	f	typeref:typename:char *
+o	file.h	/^    char u, g, o;$/;"	m	struct:__anonfd762ebb0108	typeref:typename:char
+part1	Makefile	/^part1: utils.o file.o part1.o$/;"	t
+part1.o	Makefile	/^part1.o: part1.c$/;"	t
+part2	Makefile	/^part2: utils.o file.o part2.o$/;"	t
+part2.o	Makefile	/^part2.o: part2.c$/;"	t
+perm	file.h	/^} perm;$/;"	t	typeref:struct:__anonfd762ebb0108
+print	utils.c	/^void print(char * fmt, ...) {$/;"	f	typeref:typename:void
+print_num	utils.c	/^void print_num(long long n) {$/;"	f	typeref:typename:void
+print_perm	file.c	/^void print_perm(perm p) {$/;"	f	typeref:typename:void
+progress_bar	utils.c	/^char * progress_bar(long long finished, long long total) {$/;"	f	typeref:typename:char *
+rev_copy	file.c	/^void rev_copy(int fd_a, int fd_b, int bs) {$/;"	f	typeref:typename:void
+reverse	utils.c	/^void reverse(char * str) {$/;"	f	typeref:typename:void
+str_eq	utils.c	/^bool str_eq(const char * a, const char * b) {$/;"	f	typeref:typename:bool
+str_set	utils.c	/^void str_set(char * str, int begin, int end, const char * rep) {$/;"	f	typeref:typename:void
+u	file.h	/^    char u, g, o;$/;"	m	struct:__anonfd762ebb0108	typeref:typename:char
+uniq_file	file.c	/^char * uniq_file() {$/;"	f	typeref:typename:char *
+utils.o	Makefile	/^utils.o: utils.h utils.c$/;"	t
