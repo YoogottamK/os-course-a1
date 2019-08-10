@@ -23,14 +23,14 @@ where x = (1|2)
 └────────────────────┘
 
  - To execute part1, run
-    `./part1 <path_to_file> <name_of_dir>`
+    `./part1 <path_to_file>`
 
     This will take the contents of the file and store the reversed content inside
-    dir with the same name. The permissions of file and dir are as specified in
+    dir "Assignment" with the same name. The permissions of file and dir are as specified in
     the question.
 
  - To execute part2, run
-    `./part2 <path_to_file> <name_of_dir>`
+    `./part2 <path_to_rev_file> <path_to_orig_file> <path_to_dir>`
 
     This will verify
      > whether the directory was created
