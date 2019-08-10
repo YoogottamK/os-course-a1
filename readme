@@ -2,6 +2,17 @@
 │ Assignment 1: Intro to System Calls │
 └─────────────────────────────────────┘
 
+.
+├── file.c
+├── file.h
+├── utils.c
+├── utils.h
+├── part1.c
+├── part2.c
+├── tags
+├── Makefile
+└── readme
+
 The code is distributed over mutiple files.
  - file.{c,h}: handles file related tasks
  - utils.{c,h}: has some other functions which help
