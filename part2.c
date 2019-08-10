@@ -1,6 +1,7 @@
 #include <fcntl.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <stdio.h>
 
 // Utilities I wrote to help with this task
 // Basically wrappers over syscalls
@@ -25,7 +26,8 @@ int main(int argc, char ** argv) {
     int in_fd = open(orig_path, O_RDONLY);
 
     if(in_fd == -1) {
-        print("Some error occured while opening #s\n", orig_path);
+        print("Some error occured while opening '#s': ", orig_path);
+        perror("");
 
         return 2;
     }
@@ -38,6 +40,13 @@ int main(int argc, char ** argv) {
 
     char * tmpfile = uniq_file();
     int rev_fd = open(rev_path, O_RDONLY);
+
+    if(rev_fd == -1) {
+        print("Some error occured while opening '#s': ", rev_path);
+        perror("");
+
+        return 2;
+    }
 
     print("\rWere the contents of the file reversed? #s\n", check_rev(in_fd, rev_fd) ? "yes" : "no");
 

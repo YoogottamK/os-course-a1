@@ -2,6 +2,7 @@
 #include <fcntl.h>
 #include <unistd.h>
 #include <stdlib.h>
+#include <stdio.h>
 
 // Utilities I wrote to help with this task
 // Basically wrappers over syscalls
@@ -21,7 +22,8 @@ int main(int argc, char ** argv) {
     // Try to open the file
     int in_fd = open(argv[1], O_RDONLY);
     if(in_fd == -1) {
-        print("Some error occured while opening #s\n", argv[1]);
+        print("Some error occured while opening '#s': ", argv[1]);
+        perror("");
 
         return 2;
     }
@@ -34,7 +36,8 @@ int main(int argc, char ** argv) {
         // no? ok trying to create it
         if(mkdir(dir_name, 0700) == -1) {
             // oops
-            print("There was some error in creating directory #s", dir_name);
+            print("There was some error in creating directory '#s': ", dir_name);
+            perror("");
 
             return 3;
         }
@@ -48,6 +51,13 @@ int main(int argc, char ** argv) {
 
     // create the dest file
     int rev_fd = open(dest, O_CREAT | O_TRUNC | O_WRONLY, 0600);
+
+    if(rev_fd == -1) {
+        print("There was some error in creating file: ");
+        perror("");
+
+        return 2;
+    }
 
     off_t bs = get_size(argv[1]) / 100;
     if(!bs) bs = 1;
