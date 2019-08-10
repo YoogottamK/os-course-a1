@@ -3,8 +3,6 @@
 #include <stdarg.h>
 #include <sys/ioctl.h>
 
-#include <stdio.h>
-
 #include "utils.h"
 
 unsigned int len_str(const char * str) {
