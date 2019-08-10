@@ -49,8 +49,8 @@ print_num	utils.c	/^void print_num(long long n) {$/;"	f	typeref:typename:void
 print_perm	file.c	/^void print_perm(perm p) {$/;"	f	typeref:typename:void
 progress_bar	utils.c	/^char * progress_bar(long long finished, long long total) {$/;"	f	typeref:typename:char *
 rev_copy	file.c	/^void rev_copy(int fd_a, int fd_b, int bs) {$/;"	f	typeref:typename:void
-reverse	utils.c	/^void reverse(char * str) {$/;"	f	typeref:typename:void
-str_eq	utils.c	/^bool str_eq(const char * a, const char * b) {$/;"	f	typeref:typename:bool
+reverse	utils.c	/^void reverse(char * str, int len) {$/;"	f	typeref:typename:void
+str_eq	utils.c	/^bool str_eq(const char * a, const char * b, int len) {$/;"	f	typeref:typename:bool
 str_set	utils.c	/^void str_set(char * str, int begin, int end, const char * rep) {$/;"	f	typeref:typename:void
 u	file.h	/^    char u, g, o;$/;"	m	struct:__anonfd762ebb0108	typeref:typename:char
 uniq_file	file.c	/^char * uniq_file() {$/;"	f	typeref:typename:char *

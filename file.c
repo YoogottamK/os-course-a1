@@ -105,7 +105,7 @@ void rev_copy(int fd_a, int fd_b, int bs) {
 
         bytes_copied += bs;
 
-        reverse(block);
+        reverse(block, bs);
 
         write(fd_b, block, bs);
 
@@ -154,9 +154,9 @@ bool check_rev(int fd_a, int fd_b) {
         buf_a[bs] = 0;
         buf_b[bs] = 0;
 
-        reverse(buf_b);
+        reverse(buf_b, bs);
 
-        if(!str_eq(buf_a, buf_b)) {
+        if(!str_eq(buf_a, buf_b, bs)) {
             free(buf_a);
             free(buf_b);
 

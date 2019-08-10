@@ -60,7 +60,7 @@ void str_set(char * str, int begin, int end, const char * rep);
 /*
  * str_eq: check if two strings are equal or not
  */
-bool str_eq(const char * a, const char * b);
+bool str_eq(const char * a, const char * b, int len);
 
 /*
  * append: append string b to a
@@ -70,7 +70,7 @@ char * append(const char * a, const char * b);
 /*
  * reverse: reverses a string
  */
-void reverse(char *str);
+void reverse(char *str, int len);
 
 /*
  * progress_bar: display a progress bar

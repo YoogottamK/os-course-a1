@@ -71,8 +71,8 @@ char * append(const char * a, const char * b) {
     return ret;
 }
 
-void reverse(char * str) {
-    int r = len_str(str) - 1, l = 0;
+void reverse(char * str, int len) {
+    int r = len - 1, l = 0;
     char c;
 
     while(l < r) {
@@ -84,8 +84,8 @@ void reverse(char * str) {
     }
 }
 
-bool str_eq(const char * a, const char * b) {
-    for(int i = 0; a[i] && b[i]; i++)
+bool str_eq(const char * a, const char * b, int len) {
+    for(int i = 0; i < len; i++)
         if(a[i] != b[i])
             return false;
 
