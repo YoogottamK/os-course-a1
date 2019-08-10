@@ -11,53 +11,48 @@
 
 int main(int argc, char ** argv) {
     // Check if the user provided path or not
-    if(argc != 2) {
-        print("Usage: #s 'path_to_file'\n", argv[0]);
+    if(argc != 4) {
+        print("Usage: #s 'path_to_rev_file' 'path_to_orig_file' 'path_to_dir' \n", argv[0]);
 
         return 1;
     }
 
+    char * rev_path = argv[1],
+        *orig_path = argv[2],
+        *dirname = argv[3];
+
     // Try to open the file
-    int in_fd = open(argv[1], O_RDONLY);
+    int in_fd = open(orig_path, O_RDONLY);
+
     if(in_fd == -1) {
-        print("Some error occured while opening #s\n", argv[1]);
+        print("Some error occured while opening #s\n", orig_path);
 
         return 2;
     }
 
-    char * filename = get_filename(argv[1]),
-          *dir_name = "Assignment";
-
-    // these intermediate variables are used to
-    // prevent any memory leaks. Each of them are free'd
-    // at the end
-    char * dest_with_slash = append(dir_name, "/"),
-         *dest = append(dest_with_slash, filename);
-
     // Does the directory exist?
-    print("Was the directory created? #s\n", exists(dir_name) ? "yes" : "no");
+    print("Was the directory created? #s\n", exists(dirname) ? "yes" : "no");
 
     // Are contents reversed?
     print("Checking file content...");
 
     char * tmpfile = uniq_file();
-    int chk_fd = open(tmpfile, O_CREAT | O_TRUNC | O_RDWR),
-        rev_fd = open(dest, O_RDONLY);
+    int rev_fd = open(rev_path, O_RDONLY);
 
-    // reverse the reversed contents again to check
-    // if it is same as the original file
-    rev_copy(rev_fd, chk_fd, 1e6, 0);
-
-    print("\rWere the contents of the file reversed? #s\n", diff_file(in_fd, chk_fd) ? "no" : "yes");
+    print("\rWere the contents of the file reversed? #s\n", check_rev(in_fd, rev_fd) ? "yes" : "no");
 
     // permissions
     print("\nPermissions\n");
 
-    perm file_perm = get_perm(dest),
-         dir_perm = get_perm(argv[2]);
+    perm rev_perm = get_perm(rev_path),
+         orig_perm = get_perm(orig_path),
+         dir_perm = get_perm(dirname);
 
-    print("File:\n");
-    print_perm(file_perm);
+    print("Original File:\n");
+    print_perm(orig_perm);
+
+    print("Reversed File:\n");
+    print_perm(rev_perm);
 
     print("Dir:\n");
     print_perm(dir_perm);
@@ -67,10 +62,6 @@ int main(int argc, char ** argv) {
 
     close(in_fd);
     close(rev_fd);
-    close(chk_fd);
 
     free(tmpfile);
-    free(dest_with_slash);
-    free(filename);
-    free(dest);
 }

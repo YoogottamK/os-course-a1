@@ -51,10 +51,10 @@ int main(int argc, char ** argv) {
 
     off_t bs = get_size(argv[1]) / 100;
     if(!bs) bs = 1;
-    if(bs > 1e6) bs = 1e6;
+    if(bs > 1e7) bs = 1e7;
 
     // reverse copy contents of in_fd to rev_fd
-    rev_copy(in_fd, rev_fd, bs, 1);
+    rev_copy(in_fd, rev_fd, bs);
 
     close(in_fd);
     close(rev_fd);

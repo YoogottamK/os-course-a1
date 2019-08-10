@@ -47,13 +47,12 @@ char * get_filename(const char * path);
  *  bs: block size chunks in which the file is copied
  *  progress: whether to show the progress bar or not
  */
-void rev_copy(int fd_a, int fd_b, int bs, bool progress);
+void rev_copy(int fd_a, int fd_b, int bs);
 
 /*
- * diff_file: returns if the files a and b have different content
- * or not
+ * check_rev: implements check for assignment 1
  */
-bool diff_file(int fd_a, int fd_b);
+bool check_rev(int fd_a, int fd_b);
 
 /*
  * uniq_file: returns a string which can be used as a filename
